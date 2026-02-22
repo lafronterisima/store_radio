@@ -92,7 +92,7 @@ const configData = {
 };
 
 // Ruta para la App
-app.get('/radios', (req, res) => {
+app.get('/config', (req, res) => {
   res.json(configData);
 });
 
