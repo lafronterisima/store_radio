@@ -1,106 +1,30 @@
 
 const express = require('express');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(express.json());
 
-// Tu configuración original integrada
-const configData = {
-  "radio": [
-    {
-      "radio_name": "La Fronterisima",
-      "radio_genre": "Variado",
-      "radio_url": "https://az.azurafree.eu/listen/la_fronterisima/radio.mp3",
-      "radio_image_url": "https://i.postimg.cc/4dpXTctM/Pics-Sizer-512x512.png",
-      "radio_background": "false",
-      "radio_background_url": "https://i.postimg.cc/yNVmRh6Q/radio-background.jpg",
-      "blur_radio_background": "true",
-      "song_metadata": "true",
-      "image_album_art": "true",
-      "image_album_art_dynamic_background": "true",
-      "auto_play": "true"
-    }
-  ],
-  "video": [
-    {
-      "channel_name": "La Fronterisima TV",
-      "channel_url": "https://live20.bozztv.com/giatvplayout7/giatv-209411/playlist.m3u8",
-      "channel_description": "<style>p {margin-bottom: 1.2em; text-align: justify; font-size: 13px;}</style><p>La Fronterísima es una plataforma digital moderna...</p>",
-      "channel_thumbnail": "https://i.postimg.cc/3wckw2kF/IMG-20251228-WA0012.jpg",
-      "channel_vast_ads_tag_url": "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/single_ad_samples&sz=640x480&cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&correlator="
-    }
-  ],
-  "webview": [
-    {
-      "web_url": "https://lafronterisima.stream",
-      "web_toolbar": "false"
-    }
-  ],
-  "settings": [
-    {
-      "app_status": "1",
-      "privacy_policy_url": "https://raw.githubusercontent.com/lafronterisima/Radio/refs/heads/gh-pages/privacy.txt",
-      "redirect_url": "",
-      "show_social_menu_on_radio_page": "true",
-      "show_social_menu_on_video_page": "true"
-    }
-  ],
-  "ads": [
-    {
-      "ad_status": "1",
-      "main_ads": "admob",
-      "backup_ads": "",
-      "admob_app_id": "ca-app-pub-8389148678200434~3544236174",
-      "admob_banner_id": "ca-app-pub-8389148678200434/4800777099",
-      "admob_interstitial_id": "",
-      "admob_native_id": "",
-      "admob_app_open_id": "",
-      "applovin_max_banner_id": "",
-      "applovin_max_interstitial_id": "",
-      "applovin_max_native_manual_id": "",
-      "applovin_max_app_open_id": "",
-      "fan_banner_id": "",
-      "fan_interstitial_id": "",
-      "fan_native_id": "",
-      "interstitial_ad_interval": 0
-    }
-  ],
-  "socials": [
-    {
-      "social_name": "Youtube",
-      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/refs/heads/main/ic_youtube.png",
-      "social_url": "https://youtube.com/@lafronterisima"
-    },
-    {
-      "social_name": "Facebook",
-      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/refs/heads/main/ic_facebook.png",
-      "social_url": "https://www.facebook.com/emisora.la.fronterisima"
-    },
-    {
-      "social_name": "Correo",
-      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/refs/heads/main/ic_correo.png",
-      "social_url": "https://mail.google.com"
-    },
-    {
-      "social_name": "Instagram",
-      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/refs/heads/main/instagram.png",
-      "social_url": "https://www.instagram.com/la_fronterisima"
-    }
-  ]
-};
-
-// Ruta para la App
-app.get('/config', (req, res) => {
-  res.json(configData);
-});
-
-// Ruta de prueba para el navegador
+// Ruta raíz para prueba
 app.get('/', (req, res) => {
-  res.send('Servidor de La Fronterisima activo');
+    res.send("Servidor funcionando ✅");
 });
 
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en el puerto ${PORT}`);
+// Endpoint para devolver la radio
+app.get('/radios', (req, res) => {
+    const filePath = path.join(__dirname, 'config.json');
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error leyendo config.json:', err);
+            return res.status(500).json({ error: 'No se ejecuta la radio' });
+        }
+        res.json(JSON.parse(data));
+    });
 });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor corriendo en puerto ${PORT}`));
