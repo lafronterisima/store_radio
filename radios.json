@@ -1,8 +1,8 @@
 {
   "radio": [
     {
-      "radio_name": "",
-      "radio_genre": "",
+      "radio_name": "La Fronterísima",
+      "radio_genre": "Variedad",
       "radio_url": "https://az.azurafree.eu/listen/la_fronterisima/radio.mp3",
       "radio_image_url": "https://i.postimg.cc/4dpXTctM/Pics-Sizer-512x512.png",
       "radio_background": "false",
@@ -16,11 +16,11 @@
   ],
   "video": [
     {
-      "channel_name": "",
+      "channel_name": "La Fronterísima TV",
       "channel_url": "https://live20.bozztv.com/giatvplayout7/giatv-209411/playlist.m3u8",
-      "channel_description": "<p>La Fronterísima es una plataforma digital moderna...</p>",
+      "channel_description": "<p>Transmisión en vivo de La Fronterísima</p>",
       "channel_thumbnail": "https://i.postimg.cc/3wckw2kF/IMG-20251228-WA0012.jpg",
-      "channel_vast_ads_tag_url": "https://pubads.g.doubleclick.net/gampad/ads?..."
+      "channel_vast_ads_tag_url": ""
     }
   ],
   "webview": [
@@ -32,7 +32,7 @@
   "settings": [
     {
       "app_status": "1",
-      "privacy_policy_url": "https://raw.githubusercontent.com/lafronterisima/Radio/refs/heads/gh-pages/privacy.txt",
+      "privacy_policy_url": "https://raw.githubusercontent.com/lafronterisima/Radio/gh-pages/privacy.txt",
       "redirect_url": "",
       "show_social_menu_on_radio_page": "true",
       "show_social_menu_on_video_page": "true"
@@ -45,19 +45,27 @@
       "backup_ads": "",
       "admob_app_id": "ca-app-pub-8389148678200434~3544236174",
       "admob_banner_id": "ca-app-pub-8389148678200434/4800777099",
+      "admob_interstitial_id": "",
+      "admob_native_id": "",
+      "admob_app_open_id": "",
       "interstitial_ad_interval": 0
     }
   ],
   "socials": [
     {
       "social_name": "Youtube",
-      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/refs/heads/main/ic_youtube.png",
+      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/main/ic_youtube.png",
       "social_url": "https://youtube.com/@lafronterisima"
     },
     {
       "social_name": "Facebook",
-      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/refs/heads/main/ic_facebook.png",
+      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/main/ic_facebook.png",
       "social_url": "https://www.facebook.com/emisora.la.fronterisima"
+    },
+    {
+      "social_name": "Instagram",
+      "social_icon": "https://raw.githubusercontent.com/lafronterisima/CloudRadio/main/instagram.png",
+      "social_url": "https://www.instagram.com/la_fronterisima"
     }
   ]
 }
