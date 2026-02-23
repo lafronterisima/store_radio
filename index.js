@@ -1,8 +1,8 @@
 
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
 const path = require('path');
+
 const app = express();
 
 app.use(cors());
@@ -13,17 +13,10 @@ app.get('/', (req, res) => {
     res.send("Servidor funcionando ✅");
 });
 
-// Endpoint para devolver la radio
+// Endpoint para devolver el JSON completo
 app.get('/radios', (req, res) => {
-    const filePath = path.join(__dirname, 'config.json');
-
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error leyendo config.json:', err);
-            return res.status(500).json({ error: 'No se ejecuta la radio' });
-        }
-        res.json(JSON.parse(data));
-    });
+    const filePath = path.join(__dirname, 'radios.json');
+    res.sendFile(filePath);
 });
 
 const PORT = process.env.PORT || 3000;
